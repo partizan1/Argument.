@@ -1,0 +1,33 @@
+<head>
+  <title>Asker</title>
+  <link rel="icon" href="/favicon.ico">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fingerprintjs2/1.2.0/fingerprint2.min.js"></script>
+</head>
+
+<template name="layout">
+  <div class="container">
+    <header class="navbar navbar-inverse nav-stacked" role="navigation">
+        <!--<a class="navbar-brand" href="{{pathFor 'postsList'}}"> Lab4 </a>-->
+
+      <ul class="nav nav-pills nav-stacked">
+        {{#unless login}}
+        <li class=""><h3><a class="navbar-brand" href="{{pathFor 'logreg'}}"> Вход/Регистрация </a></h3></li>
+        {{else}}
+        <li class=""><h3><a class="navbar-brand" href="{{pathFor 'postsAdd'}}"> Добавить вопрос </a></h3></li>
+        <li class=""><h3><a class="navbar-brand" href="{{pathFor 'MyPosts'}}"> Мои вопросы </a></h3></li>
+       {{/unless}}
+      <li class=""><h3><a class="navbar-brand" href="{{pathFor 'postsList'}}"> Все вопросы </a></h3></li>
+        {{#unless login}}
+          {{else}}
+        <span style="margin-left: 100px;">Вы зашли как: {{currentUser}}</span>
+          <li class="" style="float:right; margin-right: 50px;"><div class="navbar-brand" id="logout"> Выход </div></li>
+          {{/unless}}
+          </ul>
+
+
+    </header>
+    <div id="main" class="row-fluid">
+      {{> yield}}
+    </div>
+  </div>
+</template>

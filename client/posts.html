@@ -1,0 +1,103 @@
+<template name="postsList">
+  {{Sub}}
+  <br/>
+  <div class="posts">
+    {{#each postList}}
+      {{> postItem}}
+    {{/each}}
+  </div>
+  {{#if loading}}
+
+				  <div class="load-more sub btn btn-primary" >
+				  	<span>Загрузка</span>
+				  </div>
+
+			{{else}}
+			{{#if hasMore}}
+			   <div class="load-more sub btn btn-primary" >
+				  	<span>Загрузить еще</span>
+			  </div>
+			{{/if}}
+			{{/if}}
+</template>
+
+<template name="MyPosts">
+  <br/>
+  <div class="posts">
+    {{#each postList}}
+      {{> postItem}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="postsAdd">
+  <br/>
+  <form class="mainform">
+ <div class="form-group">
+   <label class="control-label" for="question">Вопрос</label>
+   <div class="controls">
+       <textarea name="question" maxlength="1000" id="question" type="text" value="" placeholder="Вопрос" class="form-control"></textarea>
+   </div>
+ </div>
+ <input type="submit" id="subQ" value="Добавить" class="addpost sub btn btn-primary"/>
+</form>
+<br/>
+</template>
+
+<template name="postPage">
+    {{> postItem}}
+  <ul class="comments">
+
+ {{#each answers}}
+   {{> answer}}
+ {{/each}}
+
+ <br/>
+</ul>
+{{#if login}}
+{{> answerSubmit}}
+{{/if}}
+</template>
+
+<template name="postItem">
+  <div class="post ">
+    <div class="post-content">
+      <h3>
+        <span>
+        <div class="btn-group col-sm-12">
+        <div class="sub2 btn-group" title="Дата публикации"><span class="glyphicon glyphicon-time"></span>&nbsp;{{SDate}}&nbsp;</div>
+        {{#if List}}
+        <div class="sub2 btn-group" title="Лайки">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-heart"></span>&nbsp;{{Likes}}&nbsp;</div>
+        {{/if}}
+        <div class="sub2 btn-group" title="Количество ответов">&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-cloud"></span>&nbsp;{{Answers}}&nbsp;</div>
+      </div>
+    </span>
+        <br/>
+        <div class="ques"> <p>{{question}}</p></div>
+      </h3>
+    </div>
+    <div class="" style="display: inline-block; margin-top: 275px;margin-right: 25px; float:right;">
+    {{#if author}}
+    <div class=" btn btn-default" id="delete" style="">Удалить</div>
+    {{/if}}
+  </div>
+
+    {{#if List}}
+    <div class="linkk"><a href="{{pathFor 'postPage'}}" class="discuss"><img class='img log' src="chevron-right.jpg" onmouseover="this.src='chevron-right2.jpg'" onmouseout="this.src='chevron-right.jpg'"></a></div>
+    {{else}}
+    {{#if login}}
+      <div class="btn-group discuss">
+        {{#if Liked}}
+        {{else}}
+    <div class="btn-group " id = "decl" title="-1"><span class="glyphicon glyphicon-minus minus"></span>&nbsp;</div>
+    {{/if}}
+     <div class="btn-group "><span class="glyphicon glyphicon-heart"></span>{{Likes}}&nbsp;</div>
+     {{#if Liked}}
+     {{else}}
+     <div class="btn-group " id = "incl" title="+1"><span class="glyphicon glyphicon-plus plus"></span>&nbsp;</div>
+      {{/if}}
+   </div>
+   {{/if}}
+    {{/if}}
+    </div>
+</template>

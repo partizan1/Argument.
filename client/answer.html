@@ -1,0 +1,52 @@
+<template name="answerSubmit">
+  <form name="comment" class="comment-form">
+ <div class="control-group">
+     <div class="controls">
+         <label for="body">Введите ваш ответ</label>
+         <textarea name="body" maxlength="1000" class="b" style="margin: 0px; width: 1080px; height: 105px;"></textarea>
+     </div>
+ </div>
+ <div class="control-group">
+     <div class="controls">
+         <button type="submit" id="subA" class="addcomm sub btn">Добавить</button>
+     </div>
+ </div>
+</form>
+  </template>
+
+<template name="answer">
+  <li>
+    {{name}}&nbsp;&nbsp; {{SDate}}
+    {{#if author}}
+    <a class="btn btn-default " id="d" style="margin-top:10px;">Удалить</a>
+    {{/if}}
+    <p>{{body}}</p>
+
+  {{#if login}}
+    <div class="btn-group discuss">
+      {{#if favorite}}
+          {{#if PostAuthor}}
+          {{else}}
+      <div class="btn-group "><span class="glyphicon glyphicon-star star"></span></div>
+      {{/if}}
+      {{#if PostAuthor}}
+      <div class="btn-group " title="Отменить"><span class="glyphicon glyphicon-star star" id="star"></span></div>
+      {{/if}}
+      {{else}}
+      {{#if PostAuthor}}
+      <div class="btn-group" title="Сделать лучшим"><span class="glyphicon glyphicon-star-empty estar"></span></div>
+      {{/if}}
+      {{/if}}
+      {{#if Liked}}
+      {{else}}
+  <div class="btn-group " id = "decla" title="-1"><span class="glyphicon glyphicon-minus minus"></span>&nbsp;</div>
+  {{/if}}
+   <div class="btn-group "><span class="glyphicon glyphicon-heart"></span>{{Likes}}&nbsp;</div>
+   {{#if Liked}}
+   {{else}}
+   <div class="btn-group " id = "incla" title="+1"><span class="glyphicon glyphicon-plus plus"></span>&nbsp;</div>
+    {{/if}}
+ </div>
+ {{/if}}
+   </li>
+</template>
